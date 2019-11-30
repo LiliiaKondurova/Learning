@@ -4,6 +4,7 @@ function addTask(){
     var newTaskCheckbox=document.createElement('input');
     var newTaskClose=document.createElement('i');
     newTaskCheckbox.setAttribute('type','checkbox');
+    newTaskCheckbox.setAttribute('value',Math.random());
     newTaskClose.setAttribute('class','material-icons');
     newTaskClose.setAttribute('onclick','removeListItem()');
     newTaskClose.innerHTML='close';
