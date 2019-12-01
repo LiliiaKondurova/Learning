@@ -1,32 +1,20 @@
 function addTask(){
-    var newTask = document.createElement('li');
-    var newTaskText=document.createElement('span');
-    var newTaskCheckbox=document.createElement('input');
-    var newTaskClose=document.createElement('i');
+    let newTask = document.createElement('li');
+    let newTaskText=document.createElement('span');
+    let newTaskCheckbox=document.createElement('input');
+    let newTaskDelete=document.createElement('i');
     newTaskCheckbox.setAttribute('type','checkbox');
-    newTaskCheckbox.setAttribute('value',Math.random());
-    newTaskClose.setAttribute('class','material-icons');
-    newTaskClose.setAttribute('onclick','removeListItem()');
-    newTaskClose.innerHTML='close';
+    newTaskDelete.setAttribute('class','material-icons');
+    newTaskDelete.innerHTML='close';
     newTaskText.innerHTML = document.getElementById('taskField').value;
     document.getElementById('todoList').appendChild(newTask);
     newTask.appendChild(newTaskCheckbox);
     newTask.appendChild(newTaskText);
-    newTask.appendChild(newTaskClose);
+    newTask.appendChild(newTaskDelete);
+    let deleteTask = function () { 
+        alert("Are you sure you want to delete this task?"); 
+        newTask.parentNode.removeChild(newTask);   
+    }
+    newTaskDelete.onclick = deleteTask;
     document.getElementById('taskField').value="";
-}
-
-function removeListItem(){
-    var items=document.getElementsByTagName('li');
-    var tab=[];
-    var liIndex;
-    for (var i=0; i<items.length; i++){
-        tab.push(items[i].innerHTML);
-    }
-    for (var i=0; i<items.length; i++){
-        items[i].onclick=function(){
-            liIndex=tab.indexOf(this.innerHTML);
-            items[liIndex].parentNode.removeChild(items[liIndex]);
-        }
-    }
 }
