@@ -11,10 +11,9 @@ function addTask(){
     newTask.appendChild(newTaskCheckbox);
     newTask.appendChild(newTaskText);
     newTask.appendChild(newTaskDelete);
-    let deleteTask = function () { 
-        alert("Are you sure you want to delete this task?"); 
-        newTask.parentNode.removeChild(newTask);   
+    newTaskDelete.onclick = function() {
+        alert('Are you sure you want to delete this task?')
+        newTask.parentNode.removeChild(newTask);
     }
-    newTaskDelete.onclick = deleteTask;
     document.getElementById('taskField').value="";
 }
