@@ -4,6 +4,9 @@ function taskText(){
 function tasksList(){
     return document.getElementById('todoList')
 }
+function completedTasks(){
+    return document.getElementById('completedTasks')
+}
 function createTasksList(){
     var newTask = document.createElement('li')
     var newTaskText=document.createElement('span')
@@ -24,18 +27,21 @@ function addTask(){
     var newTaskCheckbox=createTasksList()[1]
     var newTaskText= createTasksList()[2]
     tasksList().appendChild(newTask)
-    for (var i=1; i < createTasksList().length; i++){
-        var item=createTasksList()[i]
-        addTaskStructure(newTask,item)  
-    }
-
-
-   // newTask.appendChild(newTaskCheckbox);
-   // newTask.appendChild(newTaskText);
-   // newTask.appendChild(newTaskDelete);
-   newTaskDelete.onclick = function() {
+    newTask.appendChild(newTaskCheckbox)
+    newTask.appendChild(newTaskText)
+    newTask.appendChild(newTaskDelete)
+    newTaskDelete.onclick = function() {
         alert('Are you sure you want to delete this task?')
         newTask.parentNode.removeChild(newTask)
+    }
+    newTaskCheckbox.onchange = function () {
+            if (newTaskCheckbox.checked===true){
+                newTask.parentNode.removeChild(newTask)
+                completedTasks().appendChild(newTask)
+            } else {
+                completedTasks().removeChild(newTask)
+                tasksList().appendChild(newTask)
+            }
     }
     taskText().value=""
 }
